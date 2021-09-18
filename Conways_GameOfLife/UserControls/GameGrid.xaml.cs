@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Conways_GameOfLife.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,27 +21,40 @@ namespace Conways_GameOfLife.UserControls
     /// </summary>
     public partial class GameGrid : UserControl
     {
+
+        private CellController CellController = CellController.GetInstance();
+
         public GameGrid()
         {
             InitializeComponent();
         }
 
-        public void SetGridSize(int new_height, int new_width)
+        public void SetGridSize(int newHeight, int newWidth)
         {
             MainGrid.RowDefinitions.Clear();
             MainGrid.ColumnDefinitions.Clear();
+            MainGrid.Children.Clear();
+            CellController.GameCells.Clear();
 
-            for(int row = 0; row < new_height; row++)
+            for (int row = 0; row < newHeight; row++)
             {
-                MainGrid.RowDefinitions.Add(new RowDefinition() { Height= new GridLength(15)});
+                MainGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(18) });
+
+                for (int column = 0; column < newWidth; column++)
+                {
+                    if (row < 1)
+                    {
+                        MainGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(18) });
+                    }
+
+                    GameCell newCell = new(row, column);
+                    Grid.SetRow(newCell, row);
+                    Grid.SetColumn(newCell, column);
+
+                    CellController.AddCell(newCell);
+                    MainGrid.Children.Add(newCell);
+                }
             }
-
-            for (int column = 0; column < new_width; column++)
-            {
-                MainGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(15) });
-            }
-
-
         }
     }
 }

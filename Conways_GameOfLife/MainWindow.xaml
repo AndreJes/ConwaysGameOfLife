@@ -11,16 +11,17 @@
         <!--#region Menu-->
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
-                <Button>Start</Button>
+                <Button x:Name="StartButton" Click="StartButton_Click">Start</Button>
+                <Button x:Name="StopButton" Click="StopButton_Click">Stop</Button>
+                <Button x:Name="TestButton" Click="TestButton_Click">Test</Button>
+                <Button x:Name="ResetButton" Click="ResetButton_Click">Clear</Button>
                 <!--
-                <Button>Clear</Button>
                 <Button>Change Size</Button>
                 -->
             </ToolBar>
         </ToolBarTray>
         <!--#endregion-->
         <uc:GameGrid x:Name="GameGrid">
-            
         </uc:GameGrid>
     </DockPanel>
 </Window>

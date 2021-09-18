@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Conways_GameOfLife.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
-    <Grid x:Name="MainGrid" ShowGridLines="True">
+    <Grid x:Name="MainGrid">
+        
     </Grid>
 </UserControl>
