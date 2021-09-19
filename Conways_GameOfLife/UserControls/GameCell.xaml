@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Conways_GameOfLife.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid x:Name="CellGrid" Cursor="Hand" MouseDown="CellGrid_MouseDown">
+    <Grid x:Name="CellGrid" Cursor="Hand" MouseDown="CellGrid_MouseDown" MouseEnter="CellGrid_MouseEnter">
         <Border x:Name="CellBorder" BorderThickness="0.5"></Border>
     </Grid>
 </UserControl>

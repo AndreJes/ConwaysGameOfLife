@@ -13,5 +13,10 @@ namespace Conways_GameOfLife.Classes
         public List<string> NeighborsIds { get; set; }
 
         public bool IsAlive { get; set; }
+
+        public int CoordinateX { get; set; }
+
+        public int CoordinateY { get; set; }
+
     }
 }

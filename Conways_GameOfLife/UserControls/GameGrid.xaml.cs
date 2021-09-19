@@ -33,9 +33,7 @@ namespace Conways_GameOfLife.UserControls
         {
             MainGrid.RowDefinitions.Clear();
             MainGrid.ColumnDefinitions.Clear();
-            MainGrid.Children.Clear();
-            CellController.GameCells.Clear();
-
+            List<GameCell> updateList = new();
             for (int row = 0; row < newHeight; row++)
             {
                 MainGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(18) });
@@ -47,14 +45,32 @@ namespace Conways_GameOfLife.UserControls
                         MainGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(18) });
                     }
 
-                    GameCell newCell = new(row, column);
-                    Grid.SetRow(newCell, row);
-                    Grid.SetColumn(newCell, column);
+                    GameCell cell = new(row, column, false);
 
-                    CellController.AddCell(newCell);
-                    MainGrid.Children.Add(newCell);
+                    cell.Data.CoordinateX = row;
+                    cell.Data.CoordinateY = column;
+
+                    updateList.Add(cell);
                 }
             }
+
+            UpdateGridCells(updateList);
+            updateList.Clear();
+        }
+
+        public void UpdateGridCells(List<GameCell> gameCells)
+        {
+            MainGrid.Children.Clear();
+            CellController.GameCells.Clear();
+
+            foreach (var cell in gameCells)
+            {
+                Grid.SetRow(cell, cell.Data.CoordinateX);
+                Grid.SetColumn(cell, cell.Data.CoordinateY);
+                CellController.AddCell(cell);
+                MainGrid.Children.Add(cell);
+            }
+
         }
     }
 }

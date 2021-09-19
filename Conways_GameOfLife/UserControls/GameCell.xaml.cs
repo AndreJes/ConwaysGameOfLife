@@ -26,13 +26,16 @@ namespace Conways_GameOfLife.UserControls
 
         public CellData Data { get; set; }
 
-        public GameCell(int coordinateX, int coordinateY)
+        public GameCell(int coordinateX, int coordinateY, bool isAlive)
         {
             InitializeComponent();
             Data = new();
             
-            Data.IsAlive = false;
+            Data.IsAlive = isAlive;
             Data.CellId = "x: " + coordinateX.ToString() + "y: " + coordinateY.ToString();
+            
+            Data.CoordinateX = coordinateX;
+            Data.CoordinateY = coordinateY;
 
             string upperNeighbor = "x: " + coordinateX.ToString() + "y: " + (coordinateY - 1).ToString();
             string lowerNeighbor = "x: " + coordinateX.ToString() + "y: " + (coordinateY + 1).ToString();
@@ -85,6 +88,15 @@ namespace Conways_GameOfLife.UserControls
         {
             ChangeState();
             UpdateColor();
+        }
+
+        private void CellGrid_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                ChangeState();
+                UpdateColor();
+            }
         }
     }
 }
